@@ -5,6 +5,7 @@ import Layout from "./Components/Layout";
 import Notification from "./Components/Notification";
 import { fetchData, sendCartData } from "./Reducer/actionCreator";
 import "./App.css";
+
 // import { toggleNotice } from "./Reducer/uiReducer";
 
 function App() {

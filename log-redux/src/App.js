@@ -6,8 +6,6 @@ import Notification from "./Components/Notification";
 import { fetchData, sendCartData } from "./Reducer/actionCreator";
 import "./App.css";
 
-// import { toggleNotice } from "./Reducer/uiReducer";
-
 function App() {
   let isRefresh = useRef(true);
   let { current } = isRefresh;
@@ -40,6 +38,7 @@ function App() {
   );
 }
 
+// import { toggleNotice } from "./Reducer/uiReducer";
 //Use Effect()
 // function App() {
 //   let isRefresh = useRef(true);

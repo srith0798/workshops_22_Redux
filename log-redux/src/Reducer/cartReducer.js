@@ -10,8 +10,11 @@ const cartSlicer = createSlice({
   },
   reducers: {
     replaceData(state, action) {
-      // state.totalQuantity = action.payload.totalQuantity;
-      state.itemList = action.payload.itemList;
+      const { itemsList } = action.payload;
+      if (itemsList.length > 0) {
+        state.totalQuantity = action.payload.totalQuantity;
+        state.itemsList = action.payload.itemsList;
+      }
     },
     addToCart(state, action) {
       state.changed = true;

@@ -11,12 +11,16 @@ export const fetchData = () => async (dispatchAction) => {
   };
   try {
     const cartData = await fetchServer();
+    const { error } = cartData;
+    if (error) throw Error(error);
+
     dispatchAction(replaceData(cartData));
   } catch (err) {
+    console.log(err.message);
     dispatchAction(
       toggleNotice({
         type: "error",
-        message: "Error man...!",
+        message: "Failure!... couldn't fetch",
         open: true,
       })
     );
@@ -41,7 +45,13 @@ export const sendCartData = (cart) => async (dispatchAction) => {
         body: JSON.stringify(cart),
       }
     );
-    await response.json();
+    const data = await response.json();
+    return data;
+  };
+  try {
+    const response = await sendRequest();
+    const { error } = response;
+    if (error) throw Error(error);
     // data success
     dispatchAction(
       toggleNotice({
@@ -50,14 +60,12 @@ export const sendCartData = (cart) => async (dispatchAction) => {
         open: true,
       })
     );
-  };
-  try {
-    await sendRequest();
   } catch (err) {
+    console.log(err.message);
     dispatchAction(
       toggleNotice({
         type: "error",
-        message: "Error man...!",
+        message: "Failure!... couldn't add",
         open: true,
       })
     );
